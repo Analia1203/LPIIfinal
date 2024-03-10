@@ -1,0 +1,95 @@
+ <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Libros</title>
+    <!-- Agregar la referencia a los archivos CSS de Bootstrap (localmente o a través de CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#">Mi Aplicación</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Acerca de</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Cursos</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Contacto</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+	
+	
+    <div class="container mt-5">
+        <h1 class="mt-5">Libros</h1>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <form action="/libros/register" method="get">
+                    <button type="submit" class="btn btn-primary">Registrar Libros</button>
+                </form>
+                <form action="/report/reporte" method="get" class="float-right">
+                    <button type="submit" class="btn btn-secondary">Generar Reporte</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+			<div class="col-md-1">
+                <h5>Id</h5>
+            </div>
+            <div class="col-md-3">
+                <h5>Nombre del Libro</h5>
+            </div>
+            <div class="col-md-2">
+                <h5>Nombre del Autor</h5>
+            </div>
+            <div class="col-md-3">
+                <h5>Fecha de Publicacion</h5>
+            </div>
+            <div class="col-md-3">
+                <h5>Acciones</h5>
+            </div>
+        </div>
+        <div class="list-group">
+            <!-- Iterar sobre la lista de personas y mostrar cada una -->
+            <div th:each="libros : ${libros}" class="list-group-item">
+                <div class="row">
+                    <div class="col-md-1" th:text="${libros.id}"></div>
+                    <div class="col-md-3" th:text="${libros.nombre}"></div>
+                    <div class="col-md-3" th:text="${libros.autor}"></div>
+                    <div class="col-md-2" th:text="${libros.fecha}"></div>
+                    <div class="col-md-3" th:text="${libros.genero.nombre}"></div>
+                    
+                    <div class="col-md-1">							
+						<a th:href="@{'/libros/edit/' + ${libros.id} }" 
+						onclick="return confirm('¿Está seguro de actualizar el registro?');"
+						class="btn btn-warning">Editar</a>
+					</div>
+					
+					<div class="col-md-1">								                
+		                <a th:href="@{'/libros/delete/' + ${libros.id} }" 
+		                onclick="return confirm('¿Está seguro de eliminar el registro?');" 
+		                class="btn btn-danger">Eliminar</a>
+					</div>					
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Agregar la referencia a los archivos JavaScript de Bootstrap (localmente o a través de CDN) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
