@@ -48,14 +48,17 @@
 			<div class="col-md-1">
                 <h5>Id</h5>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <h5>Nombre del Libro</h5>
             </div>
             <div class="col-md-2">
                 <h5>Nombre del Autor</h5>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <h5>Fecha de Publicacion</h5>
+            </div>
+             <div class="col-md-2">
+                <h5>Genero</h5>
             </div>
             <div class="col-md-3">
                 <h5>Acciones</h5>
@@ -66,10 +69,10 @@
             <div th:each="libros : ${libros}" class="list-group-item">
                 <div class="row">
                     <div class="col-md-1" th:text="${libros.id}"></div>
-                    <div class="col-md-3" th:text="${libros.nombre}"></div>
-                    <div class="col-md-3" th:text="${libros.autor}"></div>
+                    <div class="col-md-2" th:text="${libros.nombre}"></div>
+                    <div class="col-md-2" th:text="${libros.autor}"></div>
                     <div class="col-md-2" th:text="${libros.fecha}"></div>
-                    <div class="col-md-3" th:text="${libros.genero.nombre}"></div>
+                    <div class="col-md-2" th:text="${libros.genero.nombre}"></div>
                     
                     <div class="col-md-1">							
 						<a th:href="@{'/libros/edit/' + ${libros.id} }" 
